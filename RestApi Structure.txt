@@ -1,0 +1,14 @@
+CustomTansaction API
+
+GET Method ---> http://localhost:8080/login //Login Validation
+
+GET Method ---> http://localhost:8080/products // To get list of products
+
+GET Method ---> http://localhost:8080/transaction //To get transaction
+
+GET Method ---> http://localhost:8080/findBycustomerName?customerName=customerName //To get transaction by Customer Name 
+
+GET Method ---> http://localhost:8080/findByPinCode?PinCode=PinCode //To get transaction by Pin Code
+
+
+
