@@ -4,3 +4,5 @@
 # done with RestApi structure
 # done with entity classes
 # working on RestApi calls
+# working on more screen mocks
+# started working on Angular Application
