@@ -1,0 +1,21 @@
+<div class="navbar">
+    <a href="/report">Back</a>
+    <!-- <a href="/product">Product Report</a> -->
+    <a href="/">Log Out</a>
+  </div>
+<table border = "2" align="center">
+    <tr>
+        <th>cartId</th>
+        <!-- <th>merchantId</th> -->
+        <th>productId</th>
+        <!-- <th>cartId</th> -->
+        <th>quantity</th>
+    </tr>
+    <tr *ngFor="let cart of carts" >
+        <td>{{cart.cartId}}</td>
+        <!-- <td>{{tran.merchantId}}</td> -->
+        <td>{{cart.productId}}</td>
+        <!-- <td>{{tran.cartId}}</td> -->
+        <td>{{cart.quantity}}</td>
+    </tr>
+</table>

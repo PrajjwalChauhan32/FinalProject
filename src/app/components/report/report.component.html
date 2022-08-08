@@ -13,6 +13,7 @@
     
     <div class="navbar">
       <a href="/home">Home</a>
+      <a href="/product">Product Report</a>
       <a href="/">Log Out</a>
     </div>
     <table align="center">
@@ -31,65 +32,15 @@
             <div class="col-sm-3"><input type="submit" name="submit" value="Customer Volume Report" class="btn btn-info"></div>
           </form>
         </td>
+        <td>
+          <form #search3 = "ngForm" (ngSubmit)="getCustomerValueReport(search3.value)">
+            <div class="col sm-6"><input class="form-control" type="date"placeholder="Search by Start" name="searchByStart" [(ngModel)] = "searchByStart"></div>
+            <div class="col sm-6"><input class="form-control" type="date"placeholder="Search by End" name="searchByEnd" [(ngModel)] = "searchByEnd"></div>
+            <div class="col-sm-3"><input type="submit" name="submit" value="Customer Value Report" class="btn btn-info"></div>
+          </form>
+        </td>
       </tr>
     </table>
-    <!-- &nbsp;
-    <form #search = "ngForm" (ngSubmit)="getTransactionBetweenDate(search.value)">
-      <div class="col sm-6"><input class="form-control" type="date"placeholder="Search by ByStartDate" name="searchByStartDate" [(ngModel)] = "searchByStartDate"></div>
-      <div class="col sm-6"><input class="form-control" type="date"placeholder="Search by ByEndDate" name="searchByEndDate" [(ngModel)] = "searchByEndDate"></div>
-      <div class="col-sm-3"><input type="submit" name="submit" value="Complete Report" class="btn btn-info"></div>
-    </form>
-    &nbsp;
-    <form #search2 = "ngForm" (ngSubmit)="getTransactionByCustomerVolume(search2.value)">
-      <div class="col sm-6"><input class="form-control" type="date"placeholder="Search by Start" name="searchByStart" [(ngModel)] = "searchByStart"></div>
-      <div class="col sm-6"><input class="form-control" type="date"placeholder="Search by End" name="searchByEnd" [(ngModel)] = "searchByEnd"></div>
-      <div class="col-sm-3"><input type="submit" name="submit" value="Customer Volume Report" class="btn btn-info"></div>
-    </form> -->
-
-    
-    <!-- <form #search = "ngForm" >
-    <div class="date">
-    <b><label for="start">
-      From:
-    </label></b>
-    
-    <input type="date" 
-      placeholder="dd-mm-yyyy" value="" name="searchByStartDate" [(ngModel)] = "searchByStartDate"
-      min="1997-01-01" max="2030-12-31">
-    
-      <b><label for="start">
-        To:
-      </label></b>
-    
-      <input type="date" 
-      placeholder="dd-mm-yyyy" value="" name="searchByEndDate" [(ngModel)] = "searchByEndDate"
-      min="1997-01-01" max="2030-12-31">
-    </div> -->
-    
-    <!-- <div class="dropdown my-menu"> -->
-      <!-- <button class="btn btn-secondary 
-                     dropdown-toggle" 
-              type="button"
-              id="dropdownMenuButton" 
-              data-toggle="dropdown" 
-              aria-haspopup="true" 
-              aria-expanded="false"
-              (ngSubmit)="getTransactionBetweenDate()">
-          Generate Report
-      </button> -->
-
-      <!-- <div class="dropdown-menu" 
-           aria-labelledby="dropdownMenuButton">
-    
-    <a class="dropdown-item" href="#">Complete Report</a>
-    <a class="dropdown-item" href="#">Product Value report</a>
-    <a class="dropdown-item" href="#">Product Volume report</a>
-    <a class="dropdown-item" href="#">Customer Value report</a>
-    <a class="dropdown-item" href="#">Customer Volume report</a>
-    </div> -->
-    <!-- </div> -->
-<!-- </form> -->
-    <!-- </div> -->
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
                     integrity=

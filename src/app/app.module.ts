@@ -13,13 +13,14 @@ import { HomeComponentComponent } from './components/home-component/home-compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './auth.guard';
 import { ReportComponent } from './components/report/report.component';
+import { ProductReportComponent } from './components/product-report/product-report.component';
 
 const routes:Routes=[
   {path:'',component:LoginComponent},
   {path:'transaction',component:TransactionListComponent},
   {path:'home',component:HomeComponentComponent},
-  {path:'report',component:ReportComponent}
-  // {path:'products',canActivate:[AuthGuard],component:ProductListComponent},
+  {path:'report',component:ReportComponent},
+  {path:'product',component:ProductReportComponent},
   // {path:'categories',component:CategoryListComponent},
   // {path:'prodform',component:ProdFormComponent},
   // {path:'buyProd',component:BuyerComponent},
@@ -36,7 +37,8 @@ const routes:Routes=[
     LoginComponent,
     TransactionListComponent,
     HomeComponentComponent,
-    ReportComponent
+    ReportComponent,
+    ProductReportComponent
   ],
   imports: [
     BrowserModule,

@@ -39,5 +39,12 @@ export class ReportComponent implements OnInit {
     })
 
   }
+  getCustomerValueReport(search3:any){
+    console.log(this.searchByStart,this.searchByEnd)
+    this.service.getCustomerValueReport(search3.searchByStart,search3.searchByEnd).subscribe(data => {
+    this.transactions = data
+    })
+
+  }
 
 }

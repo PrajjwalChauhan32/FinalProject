@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Transaction } from '../common/transaction';
 import { map, Observable, Timestamp } from 'rxjs';
 import { Merchant } from '../common/merchant';
+import { Cart } from '../common/cart';
 
 @Injectable({
   providedIn: 'root'
@@ -65,12 +66,24 @@ export class CustomServiceService {
 
   }
   getTransactionByCustomerVolume(start:Date,end:Date){
-    // http://localhost:8080/api/transaction/search/getTransactionsReportByCustomerVolume{?t1,t2}
     const getTransactionBetweenDateURL="http://localhost:8080/api/transaction/search/getTransactionsReportByCustomerVolume?t1="+start+"&t2="+end
 
     return this.httpClient.get<GetResponseTransaction>(getTransactionBetweenDateURL).pipe(map(response => response._embedded.transactions))
 
   }
+  getProductVolumeReport(){
+    const getProductVolumeReportURL="http://localhost:8080/api/cart/search/getProductVolumeReport"
+
+    return this.httpClient.get<GetResponseCart>(getProductVolumeReportURL).pipe(map(response => response._embedded.carts))
+
+  }
+  getCustomerValueReport(start:Date,end:Date){
+    const getCustomerValueReportURL="http://localhost:8080/api/transaction/search/getCustomerValueReport?t1="+start+"&t2="+end
+
+    return this.httpClient.get<GetResponseTransaction>(getCustomerValueReportURL).pipe(map(response => response._embedded.transactions))
+
+  }
+  // http://localhost:8080/api/transaction/search/getCustomerValueReport{?t1,t2}
  
 }
 interface GetResponseTransaction{
@@ -81,6 +94,11 @@ interface GetResponseTransaction{
  interface GetResponseMerchant{
   _embedded:{
     merchants:Merchant[]
+  }
+ }
+ interface GetResponseCart{
+  _embedded:{
+    carts:Cart[]
   }
  }
  
