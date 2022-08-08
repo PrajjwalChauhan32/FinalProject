@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Cart")
 
-public class Cart {
+public class Cart implements Serializable {
 	@Id
 	@Column(name = "cartid")
 	private int cartId;
@@ -42,21 +42,18 @@ public class Cart {
 	  
 	  @JoinColumn(name= "productid", nullable = false, unique = true,
 	  insertable=false, updatable=false) private Set<Product> products;
+	  
+	  
+	  public Set<Product> getProduct() { return products; }
+	  
+	  public void setProduct(Set<Product> products) { this.products = products; }
 	 
-
-	public Set<Product> getProduct() {
-		return products;
-	}
-
-	public void setProduct(Set<Product> products) {
-		this.products = products;
-	}
 
 	public Cart() {
 
 	}
 
-	public Cart(int cartId, int productId, int quantity, Set<Product> products) {
+	public Cart(int cartId, int productId, int quantity,Set<Product> products) {
 		this.cartId = cartId;
 		this.productId = productId;
 		this.quantity = quantity;

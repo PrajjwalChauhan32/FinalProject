@@ -45,5 +45,9 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
 	@Query(value="select * from Transaction t where t.customername = (select customername from transaction group by customername having purchasedAt > :t1 and purchasedAt < :t2 order by count(customername) desc limit 1);", nativeQuery=true)
 	List<Transaction> getTransactionsReportByCustomerVolume(@RequestParam("t1")Date t1,@RequestParam("t2")Date t2);
 	
+	@Query(value="select * from transaction where purchasedAt > :t1 and purchasedAt < :t2 order by totalamount desc limit 3;", nativeQuery=true)
+	List<Transaction> getCustomerValueReport(@RequestParam("t1")Date t1,@RequestParam("t2")Date t2);
+	
+	
 	
 }
