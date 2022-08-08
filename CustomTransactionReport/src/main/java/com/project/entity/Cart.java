@@ -4,27 +4,28 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Cart")
-public class Cart implements Serializable{
+@Table(name = "Cart")
+
+public class Cart {
 	@Id
-	@Column(name="cartid")
+	@Column(name = "cartid")
 	private int cartId;
-	
-	@Id
-	@Column(name="productid")
+
+	@Column(name = "productid")
 	private int productId;
-	
-	@Column(name="quantity")
+
+	@Column(name = "quantity")
 	private int quantity;
-	
+
 //	@OneToMany(mappedBy = "productid")
 //	private Set<Product> products ;
 //	
@@ -36,14 +37,30 @@ public class Cart implements Serializable{
 //		this.products = products;
 //	}
 
-	public Cart() {
-		
+	
+	  @OneToMany(fetch = FetchType.LAZY)
+	  
+	  @JoinColumn(name= "productid", nullable = false, unique = true,
+	  insertable=false, updatable=false) private Set<Product> products;
+	 
+
+	public Set<Product> getProduct() {
+		return products;
 	}
 
-	public Cart(int cartId, int productId, int quantity) {
+	public void setProduct(Set<Product> products) {
+		this.products = products;
+	}
+
+	public Cart() {
+
+	}
+
+	public Cart(int cartId, int productId, int quantity, Set<Product> products) {
 		this.cartId = cartId;
 		this.productId = productId;
 		this.quantity = quantity;
+		this.products = products;
 	}
 
 	public int getCartId() {

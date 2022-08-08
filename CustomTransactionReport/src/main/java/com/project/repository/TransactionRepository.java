@@ -1,5 +1,8 @@
 package com.project.repository;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -21,14 +24,26 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
 	
 	public Page<Transaction> findByPincode(@RequestParam("pincode")Integer pincode,Pageable page);
 	
-//	@Query("SELECT t FROM Transaction t WHERE t.totalAmount < 100")
-//	List<Transaction> findAllTransactions();
+
 	
 	@Query("select t from Transaction t where t.totalAmount >(select u.upperLimit from FilterPreference u where u.merchantId = 1001)")
 	List<Transaction> getTransactionsByUpperLimit();
 	
 	@Query("select t from Transaction t where t.totalAmount <(select u.upperLimit from FilterPreference u where u.merchantId = 1001)")
 	List<Transaction> getTransactionsByLowerLimit();
+	
+	public Page<Transaction> findByTotalAmountGreaterThan(@RequestParam("totalAmount")Float totalAmount,Pageable page);
+	
+	
+	public Page<Transaction> findByTotalAmountLessThan(@RequestParam("totalAmount")Float totalAmount,Pageable page);
+	
+
+	@Query(value ="select * from Transaction t where t.purchasedAt > :t1 and t.purchasedAt < :t2 ;", nativeQuery=true)
+	List<Transaction> findByPurchasedAt(@RequestParam("t1")Date t1,@RequestParam("t2")Date t2);
+	
+	//select * from Transaction where customername=(select customername from transaction group by customername having purchasedat > '2020-01-10 07:30:45' and purchasedat < '2022-01-10 07:30:45' order by count(customername) desc limit 1);
+	@Query(value="select * from Transaction t where t.customername = (select customername from transaction group by customername having purchasedAt > :t1 and purchasedAt < :t2 order by count(customername) desc limit 1);", nativeQuery=true)
+	List<Transaction> getTransactionsReportByCustomerVolume(@RequestParam("t1")Date t1,@RequestParam("t2")Date t2);
 	
 	
 }

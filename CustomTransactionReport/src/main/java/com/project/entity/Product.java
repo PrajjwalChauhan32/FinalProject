@@ -1,6 +1,7 @@
 package com.project.entity;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="Product")
 public class Product {
 	
-	@Id
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="productid")
 	private int productId;
@@ -27,10 +28,24 @@ public class Product {
 	@Column(name="category")
 	private String category;
 	
-//	@ManyToOne
-//	@JoinColumn(name="transactionid", nullable=false)
-//	private Transaction transaction;
-	
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="transactionid", nullable=false) private Transaction
+	 * transaction;
+	 * 
+	 * 
+	 * 
+	 * public Transaction getTransaction() { return transaction; }
+	 * 
+	 * 
+	 * 
+	 * public void setTransaction(Transaction transaction) { this.transaction =
+	 * transaction; }
+	 */
+
+
+
 	public Product() {
 	
 	}
@@ -38,7 +53,6 @@ public class Product {
 	
 
 	public Product(int productId, String productName, float cost, String category) {
-		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.cost = cost;
